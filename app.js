@@ -22,19 +22,22 @@ const Header = () => {
 
 const RestaurentCard = (props) => { 
     const {resData} = props;
+    const {cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData?.info//here ? indicates optional chaining.
+    //it ensures that if resData is null or undefined it wont throw an error. if resData is undefined it evaluates undefined,
+    //and the destructuring will also give undefined for  the variables.    
     return(
         <div className="res-card" style = {{backgroundColor: "#f0f0f0"}}>
             <img className="res-img" 
             alt="restarentImg" 
             src={
                 "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + 
-                resData.info.cloudinaryImageId
+                cloudinaryImageId
             }
             />
-            <h3>{resData.info.name}</h3>
-            <h3>{resData.info.cuisines.join(", ")}</h3>
-            <h3>{resData.info.avgRating} stars</h3>
-            <h3>{resData.info.costForTwo}</h3>
+            <h3>{name}</h3>
+            <h3>{cuisines.join(", ")}</h3>
+            <h3>{avgRating} stars</h3>
+            <h3>{costForTwo}</h3>
             <h3>{resData.info.sla.deliveryTime} mins</h3>
                         
             
@@ -42,7 +45,7 @@ const RestaurentCard = (props) => {
     )
 }
 
-const resObj = [
+const resList = [
   {
     "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
     "info": {
@@ -400,28 +403,17 @@ const resObj = [
 ]
 
 
-
-
-
-
-
-
-
-
 const Body = () => {
     return(
         <div className="body">
             <div className="search">searchBar</div>
             <div className="res-container">
-                <RestaurentCard resData = {resObj[0]}/>
-                <RestaurentCard resData = {resObj[1]}/>
-                <RestaurentCard resData = {resObj[2]}/>
-                <RestaurentCard resData = {resObj[3]}/>
-                <RestaurentCard resData = {resObj[4]}/>
-                <RestaurentCard resData = {resObj[5]}/>
-                <RestaurentCard resData = {resObj[6]}/>
-                <RestaurentCard resData = {resObj[7]}/>
-                <RestaurentCard resData = {resObj[8]}/>
+                {
+                    resList.map((restaurant) => (<RestaurentCard key={restaurant.info.id} resData={restaurant} />))
+                    //Using the array index as a key is risky when the list changes dynamically (items are added, removed, or reordered):
+                    //but it still is better to use index as key than no key at all
+                    //Using the index is acceptable if the list is static and never reordered, deleted, or inserted.
+                }
                 
             </div>
         </div>
