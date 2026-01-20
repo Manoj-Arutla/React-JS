@@ -20,39 +20,409 @@ const Header = () => {
 }
 
 
-const RestaurentCard = ({resName, cuisine, rating, deliveryTime}) => { 
-    //this is same as--> const {resName, cuisine, rating, deliveryTime} = props (destructuring)
+const RestaurentCard = (props) => { 
+    const {resData} = props;
     return(
         <div className="res-card" style = {{backgroundColor: "#f0f0f0"}}>
             <img className="res-img" 
             alt="restarentImg" 
-            src="https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/v1704283720/afecca022851255d6eb0b025c9aeaaa3.jpg"/>
-            <h3>{resName}</h3>
-            <h4>{cuisine}</h4>
-            <h4>{rating}</h4>
-            <h4>{deliveryTime}</h4>
+            src={
+                "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + 
+                resData.info.cloudinaryImageId
+            }
+            />
+            <h3>{resData.info.name}</h3>
+            <h3>{resData.info.cuisines.join(", ")}</h3>
+            <h3>{resData.info.avgRating} stars</h3>
+            <h3>{resData.info.costForTwo}</h3>
+            <h3>{resData.info.sla.deliveryTime} mins</h3>
+                        
             
         </div>
     )
 }
+
+const resObj = [
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "402599",
+      "name": "Haldiram's Restaurant",
+      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/10/11/904d4c36-3aca-404a-a236-21c61d669f11_402599.JPG",
+      "locality": "Ground floor, Moti Mahal Market",
+      "areaName": "Kachiguda",
+      "costForTwo": "₹400 for two",
+      "cuisines": ["North Indian","Chaat","Chinese","South Indian","Fast Food","Snacks","sandwich","Burger","pizza","Pasta"],
+      "avgRating": 4.2,
+      "veg": true,
+      "parentId": "351771",
+      "avgRatingString": "4.2",
+      "totalRatingsString": "7.4K+",
+      "promoted": true,
+      "sla": {
+        "deliveryTime": 33,
+        "lastMileTravel": 3.5,
+        "serviceability": "SERVICEABLE",
+        "slaString": "30-35 mins",
+        "lastMileTravelString": "3.5 km",
+        "iconType": "ICON_TYPE_EMPTY"
+      },
+      "availability": {
+        "nextCloseTime": "2026-01-21 03:00:00",
+        "opened": true
+      },
+      "badges": {},
+      "type": "F",
+      "badgesV2": {"entityBadges":{"imageBased":{},"textExtendedBadges":{},"textBased":{}}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"--"}},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=402599&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "214964",
+      "name": "Lingaiah Hotel",
+      "cloudinaryImageId": "nzdth23az5qcih3ktox8",
+      "locality": "Mallepally",
+      "areaName": "Toli Chowki",
+      "costForTwo": "₹200 for two",
+      "cuisines": ["South Indian"],
+      "avgRating": 4.6,
+      "veg": true,
+      "parentId": "125253",
+      "avgRatingString": "4.6",
+      "totalRatingsString": "4.9K+",
+      "sla": {"deliveryTime":19,"lastMileTravel":1.2,"serviceability":"SERVICEABLE","slaString":"15-20 mins","lastMileTravelString":"1.2 km","iconType":"ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime":"2026-01-20 14:30:00","opened":true},
+      "badges": {},
+      "type": "F",
+      "badgesV2": {"entityBadges":{"imageBased":{},"textExtendedBadges":{},"textBased":{}}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"--"}},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=214964&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "791264",
+      "name": "Millet Express",
+      "cloudinaryImageId": "FOOD_CATALOG/IMAGES/CMS/2025/3/10/48ff68a6-2b92-408a-ad22-c96c07f30228_80fff8a0-99fa-43e6-98ca-08b0734d0a50.jpg_compressed",
+      "locality": "Musheerabad",
+      "areaName": "Himayatnagar",
+      "costForTwo": "₹200 for two",
+      "cuisines": ["Healthy Food","South Indian"],
+      "avgRating": 4.2,
+      "parentId": "10639",
+      "avgRatingString": "4.2",
+      "totalRatingsString": "4.2K+",
+      "promoted": true,
+      "sla": {"deliveryTime":33,"lastMileTravel":5.6,"serviceability":"SERVICEABLE","slaString":"30-35 mins","lastMileTravelString":"5.6 km","iconType":"ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime":"2026-01-20 15:00:00","opened":true},
+      "badges": {},
+      "type": "F",
+      "badgesV2": {"entityBadges":{"imageBased":{},"textExtendedBadges":{},"textBased":{}}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"--"}},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=791264&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "10258",
+      "name": "Bheemas Grand",
+      "cloudinaryImageId": "txg6t5xx4w2idmiiaupb",
+      "locality": "Road No 10",
+      "areaName": "Banjara Hills",
+      "costForTwo": "₹300 for two",
+      "cuisines": ["South Indian"],
+      "avgRating": 4.5,
+      "veg": true,
+      "parentId": "1842",
+      "avgRatingString": "4.5",
+      "totalRatingsString": "56K+",
+      "sla": {"deliveryTime":31,"lastMileTravel":5.6,"serviceability":"SERVICEABLE","slaString":"30-35 mins","lastMileTravelString":"5.6 km","iconType":"ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime":"2026-01-20 22:00:00","opened":true},
+      "badges": {},
+      "type": "F",
+      "badgesV2": {"entityBadges":{"imageBased":{},"textExtendedBadges":{},"textBased":{}}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"--"}},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=10258&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "4810",
+      "name": "Hotel Sitara Grand - Dhanturi Group of hotels",
+      "cloudinaryImageId": "FOOD_CATALOG/IMAGES/CMS/2024/8/9/91e798aa-a902-4dd8-829e-8663f3b6b450_71f2d6dd-f138-4bf5-bc05-bb56356efec4.jpeg",
+      "locality": "Banjara Hills",
+      "areaName": "Banjara Hills",
+      "costForTwo": "₹300 for two",
+      "cuisines": ["Biryani","Chinese","South Indian","Tandoor"],
+      "avgRating": 4.2,
+      "parentId": "351561",
+      "avgRatingString": "4.2",
+      "totalRatingsString": "20K+",
+      "promoted": true,
+      "sla": {"deliveryTime":39,"lastMileTravel":5,"serviceability":"SERVICEABLE","slaString":"35-40 mins","lastMileTravelString":"5.0 km","iconType":"ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime":"2026-01-20 11:30:00","opened":true},
+      "badges": {},
+      "type": "F",
+      "badgesV2": {"entityBadges":{"imageBased":{},"textExtendedBadges":{},"textBased":{}}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"3.4","ratingCount":"302"},"source":"GOOGLE","sourceIconImageId":"v1704440323/google_ratings/rating_google_tag"},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=4810&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "114723",
+      "name": "Suprabath tiffins",
+      "cloudinaryImageId": "xjpakucmbefgxloevbwf",
+      "locality": "DWARAKAPURI COLONY",
+      "areaName": "Punjagutta",
+      "costForTwo": "₹150 for two",
+      "cuisines": ["South Indian"],
+      "avgRating": 4.5,
+      "parentId": "18952",
+      "avgRatingString": "4.5",
+      "totalRatingsString": "13K+",
+      "sla": {"deliveryTime": 34, "lastMileTravel": 6.2, "serviceability": "SERVICEABLE", "slaString": "30-35 mins", "lastMileTravelString": "6.2 km", "iconType": "ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime": "2026-01-20 22:30:00", "opened": true},
+      "badges": {"imageBadges":[{"imageId":"v1695133679/badges/Pure_Veg111.png","description":"pureveg"}]},
+      "isOpen": true,
+      "type": "F",
+      "badgesV2": {"entityBadges":{"textExtendedBadges":{},"textBased":{},"imageBased":{"badgeObject":[{"attributes":{"imageId":"v1695133679/badges/Pure_Veg111.png","description":"pureveg"}}]}}},
+      "aggregatedDiscountInfoV2": {},
+      "aggregatedDiscountInfoV3": {"header":"ITEMS","subHeader":"AT ₹99","logoCtx":{"text":"BENEFITS"}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"--"}},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=114723&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "67791",
+      "name": "Rambharose - Bhattad Ki Idli",
+      "cloudinaryImageId": "FOOD_CATALOG/IMAGES/CMS/2024/8/13/538763bd-8b40-4ed6-8e4f-dd337c3a8017_24f3fdba-909c-414c-beea-ac6c56ad8efd.jpg",
+      "locality": "Narayanguda Rd",
+      "areaName": "Kachiguda",
+      "costForTwo": "₹300 for two",
+      "cuisines": ["South Indian"],
+      "avgRating": 4.5,
+      "veg": true,
+      "parentId": "166509",
+      "avgRatingString": "4.5",
+      "totalRatingsString": "55K+",
+      "promoted": true,
+      "sla": {"deliveryTime": 31, "lastMileTravel": 4.6, "serviceability": "SERVICEABLE", "slaString": "30-35 mins", "lastMileTravelString": "4.6 km", "iconType": "ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime": "2026-01-20 23:59:00", "opened": true},
+      "badges": {},
+      "isOpen": true,
+      "type": "F",
+      "badgesV2": {"entityBadges":{"textBased":{},"imageBased":{},"textExtendedBadges":{}}},
+      "aggregatedDiscountInfoV2": {},
+      "aggregatedDiscountInfoV3": {"header":"50% OFF","subHeader":"UPTO ₹100","logoCtx":{"text":"BENEFITS"}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"--"}},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=67791&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "314746",
+      "name": "Sri Siddhartha Tiffins and Meals",
+      "cloudinaryImageId": "frrl06q5mmhsn8mhz1na",
+      "locality": "Nallakunta",
+      "areaName": "Kachiguda",
+      "costForTwo": "₹150 for two",
+      "cuisines": ["Beverages","South Indian"],
+      "avgRating": 4.7,
+      "parentId": "194612",
+      "avgRatingString": "4.7",
+      "totalRatingsString": "15K+",
+      "sla": {"deliveryTime": 35, "lastMileTravel": 7.5, "serviceability": "SERVICEABLE", "slaString": "35-40 mins", "lastMileTravelString": "7.5 km", "iconType": "ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime": "2026-01-20 22:00:00", "opened": true},
+      "badges": {},
+      "isOpen": true,
+      "aggregatedDiscountInfoV2": {},
+      "type": "F",
+      "badgesV2": {"entityBadges":{"textBased":{},"imageBased":{},"textExtendedBadges":{}}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"4.1","ratingCount":"3.0K+"},"source":"GOOGLE","sourceIconImageId":"v1704440323/google_ratings/rating_google_tag"},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=314746&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "377316",
+      "name": "Ram Ki Bandi",
+      "cloudinaryImageId": "j99odftgvdwaevfzx9ak",
+      "locality": "Abids",
+      "areaName": "MJ Market",
+      "costForTwo": "₹300 for two",
+      "cuisines": ["South Indian"],
+      "avgRating": 4.4,
+      "parentId": "19051",
+      "avgRatingString": "4.4",
+      "totalRatingsString": "6.3K+",
+      "promoted": true,
+      "sla": {"deliveryTime": 26, "lastMileTravel": 1.9, "serviceability": "SERVICEABLE", "slaString": "25-30 mins", "lastMileTravelString": "1.9 km", "iconType": "ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime": "2026-01-20 13:00:00", "opened": true},
+      "badges": {"imageBadges":[{"imageId":"android/static-assets/icons/big_rx.png","description":"bolt!"}]},
+      "isOpen": true,
+      "type": "F",
+      "badgesV2": {"entityBadges":{"imageBased":{"badgeObject":[{"attributes":{"imageId":"android/static-assets/icons/big_rx.png","description":"bolt!"}}]},"textExtendedBadges":{},"textBased":{}}},
+      "aggregatedDiscountInfoV2": {},
+      "aggregatedDiscountInfoV3": {"header":"₹125 OFF","subHeader":"ABOVE ₹999","discountTag":"FLAT DEAL","logoCtx":{"text":"BENEFITS"}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"4.2","ratingCount":"20K+"},"source":"GOOGLE","sourceIconImageId":"v1704440323/google_ratings/rating_google_tag"},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=377316&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  },
+  {
+    "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+    "info": {
+      "id": "92839",
+      "name": "Kamat Hotel",
+      "cloudinaryImageId": "jmyufahpcimkg6cqvibg",
+      "locality": "Lakdi-Ka-Pul",
+      "areaName": "Lakdikapul",
+      "costForTwo": "₹500 for two",
+      "cuisines": ["South Indian"],
+      "avgRating": 4.6,
+      "veg": true,
+      "parentId": "657301",
+      "avgRatingString": "4.6",
+      "totalRatingsString": "39K+",
+      "sla": {"deliveryTime": 36, "lastMileTravel": 4.4, "serviceability": "SERVICEABLE", "slaString": "35-40 mins", "lastMileTravelString": "4.4 km", "iconType": "ICON_TYPE_EMPTY"},
+      "availability": {"nextCloseTime": "2026-01-20 22:00:00", "opened": true},
+      "badges": {"imageBadges":[{"imageId":"v1695133679/badges/Pure_Veg111.png","description":"pureveg"}]},
+      "isOpen": true,
+      "type": "F",
+      "badgesV2": {"entityBadges":{"textBased":{},"imageBased":{"badgeObject":[{"attributes":{"description":"pureveg","imageId":"v1695133679/badges/Pure_Veg111.png"}}]},"textExtendedBadges":{}}},
+      "aggregatedDiscountInfoV2": {},
+      "aggregatedDiscountInfoV3": {"header":"ITEMS","subHeader":"AT ₹69","logoCtx":{"text":"BENEFITS"}},
+      "orderabilityCommunication": {"title":{},"subTitle":{},"message":{},"customIcon":{},"commsStyling":{}},
+      "differentiatedUi": {"displayType":"ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT","differentiatedUiMediaDetails":{"mediaType":"ADS_MEDIA_ENUM_IMAGE","lottie":{},"video":{}}},
+      "reviewsSummary": {},
+      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      "restaurantOfferPresentationInfo": {},
+      "externalRatings": {"aggregatedRating":{"rating":"4.2","ratingCount":"13K+"},"source":"GOOGLE","sourceIconImageId":"v1704440323/google_ratings/rating_google_tag"},
+      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+    },
+    "analytics": {},
+    "cta": {"link":"swiggy://menu?restaurant_id=92839&source=collection&query=Dosa","text":"RESTAURANT_MENU","type":"DEEPLINK"},
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
+    "relevance": {"type":"RELEVANCE_TYPE_ON_MENU_RETURN","sectionId":"MENU_RETURN_FOOD"}
+  }
+]
+
+
+
+
+
+
+
+
+
 
 const Body = () => {
     return(
         <div className="body">
             <div className="search">searchBar</div>
             <div className="res-container">
-                <RestaurentCard 
-                resName = "Nawab's"
-                cuisine = "Biryani, South Indian"
-                rating = "4.5"
-                deliveryTime = "38 mins"
-                />
-                <RestaurentCard
-                resName = "KFC"
-                cuisine = "Fried Chicken, Burgers"
-                rating = "4.3"
-                deliveryTime = "45 mins"
-                />
+                <RestaurentCard resData = {resObj[0]}/>
+                <RestaurentCard resData = {resObj[1]}/>
+                <RestaurentCard resData = {resObj[2]}/>
+                <RestaurentCard resData = {resObj[3]}/>
+                <RestaurentCard resData = {resObj[4]}/>
+                <RestaurentCard resData = {resObj[5]}/>
+                <RestaurentCard resData = {resObj[6]}/>
+                <RestaurentCard resData = {resObj[7]}/>
+                <RestaurentCard resData = {resObj[8]}/>
+                
             </div>
         </div>
     )
