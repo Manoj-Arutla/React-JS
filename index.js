@@ -14,7 +14,7 @@ let jsxHeading  = (
 //here we have React element inside another React element
 
 
-//you can make this element as a functional component and you can use this inside the FunctionalComponent like Fc2
+//you can make this element as a functional component and you can use this inside the FunctionalComponent like Fc2 
 
 let Fc2 = () => (<h2>2<sup>nd</sup> FunctionalComponent</h2>)
 
@@ -37,7 +37,7 @@ let FunctionalComponent = () => {
         //<JsxHeading/>placeing this inside the above div wil render JsxHeading component into FunctionalComponent
         //this is called Component Composition --> component inside another component
         //--> {} : you can write any javaScript code inside the curly braces
-        //you can even pass React components inside the {} as "jsxHeading" is a JS variable
+        //you can even pass React elements inside the {} as "jsxHeading" is a JS variable
         )
 }
 

@@ -1,50 +1,3 @@
-import React  from "react";
-import ReactDOM from "react-dom/client";
-
-const Header = () => {
-    return(
-        <div className="header">
-            <div className="logo-container">
-                <img className="logo" src="https://www.designevo.com/res/templates/thumb_small/location-takeaway-icon.webp"/>
-            </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    )
-}
-
-
-const RestaurentCard = (props) => { 
-    const {resData} = props;
-    const {cloudinaryImageId, name, cuisines, avgRating, costForTwo } = resData?.info//here ? indicates optional chaining.
-    //it ensures that if resData is null or undefined it wont throw an error. if resData is undefined it evaluates undefined,
-    //and the destructuring will also give undefined for  the variables.    
-    return(
-        <div className="res-card" style = {{backgroundColor: "#f0f0f0"}}>
-            <img className="res-img" 
-            alt="restarentImg" 
-            src={
-                "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + 
-                cloudinaryImageId
-            }
-            />
-            <h3>{name}</h3>
-            <h3>{cuisines.join(", ")}</h3>
-            <h3>{avgRating} stars</h3>
-            <h3>{costForTwo}</h3>
-            <h3>{resData.info.sla.deliveryTime} mins</h3>
-                        
-            
-        </div>
-    )
-}
-
 const resList = [
   {
     "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
@@ -402,33 +355,4 @@ const resList = [
   }
 ]
 
-
-const Body = () => {
-    return(
-        <div className="body">
-            <div className="search">searchBar</div>
-            <div className="res-container">
-                {
-                    resList.map((restaurant) => (<RestaurentCard key={restaurant.info.id} resData={restaurant} />))
-                    //Using the array index as a key is risky when the list changes dynamically (items are added, removed, or reordered):
-                    //but it still is better to use index as key than no key at all
-                    //Using the index is acceptable if the list is static and never reordered, deleted, or inserted.
-                }
-                
-            </div>
-        </div>
-    )
-}
-
-const AppLayout = () => {
-    return(
-        <div className="app">
-            <Header/>
-            <Body/>
-        </div>
-    )
-}
-
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout/>)
+export default resList;
