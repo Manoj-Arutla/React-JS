@@ -1,6 +1,6 @@
 import RestaurentCard from "./RestaurentCard";
 import resList from "../utils/resList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Body = () => {
     const allRestaurents = resList;
@@ -17,6 +17,17 @@ const Body = () => {
 
     const reset = () => {
         setRestaurentList(allRestaurents);
+    }
+
+    useEffect(() => {
+        //after component is rendered, the callback function is executed.
+        fetchData();
+    }, [])
+
+    const fetchData = async() => {
+        const data = await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?lat=17.5080616&lng=78.49944789999999&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&carousel=true&third_party_vendor=1");
+        const json = await data.json()
+        console.log(json);
     }
 
     return(
