@@ -19,8 +19,12 @@
     margin: 10px;
 }
 
-.search{
-    padding: 10px;
+.filter{
+    margin: 10px;
+}
+
+.filter-btn{
+    margin: 0 5px;
 }
 .res-container{
     display: flex;
